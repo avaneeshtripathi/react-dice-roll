@@ -1,0 +1,86 @@
+._space3d {
+    perspective: 1000px;
+    text-align: center;
+    display: inline-block;
+    padding: unset;
+    border: unset;
+    background-color: transparent;
+    outline: unset;
+    box-shadow: unset;
+    ._3dbox {
+        display: inline-block;
+        transition: all 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-align: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+    }
+    ._3dface {
+        overflow: hidden;
+        position: absolute;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 0 50px rgba(0,0,0,0.3);
+        opacity: 1;
+        background-size: auto 100%;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // Default faces
+    .defaultFace {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        border-radius: 12px;
+        box-shadow: inset 0 0 6px #000000;
+        background-color: #fff;
+    }
+    .defaultFace div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .defaultFace span {
+        width: 60%;
+        height: 60%;
+        box-shadow: 0 0 6px #000000;
+        border-radius: 50%;
+        background-color: #000;
+    }
+    &.one ._3dbox {
+        transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+    }
+    &.two ._3dbox {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    &.three ._3dbox {
+        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+    }
+    &.four ._3dbox {
+        transform: rotateX(-90deg) rotateY(90deg) rotateZ(90deg);
+    }
+    &.five ._3dbox {
+        transform: rotateX(90deg) rotateY(-90deg) rotateZ(90deg);
+    }
+    &.rolling ._3dbox {
+        transform-style: preserve-3d;
+        animation: spin 2s infinite linear;
+    }
+}
+
+@keyframes spin {
+    0% { transform: translateZ(-100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    16% { transform: translateZ(-100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
+    33% { transform: translateZ(-100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg); }
+    50% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    66% { transform: translateZ(-100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg); }
+    83% { transform: translateZ(-100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg); }
+    100% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
