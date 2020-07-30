@@ -1,25 +1,25 @@
 import sass from 'rollup-plugin-sass';
 import typescript from 'rollup-plugin-typescript2';
+import bundleSize from 'rollup-plugin-bundle-size';
 import { terser } from "rollup-plugin-terser";
-
-import pkg from './package.json'
 
 export default {
     input: 'src/index.tsx',
     output: [
       {
-        file: pkg.main,
+        file: 'dist/index.js',
         format: 'cjs',
         exports: 'named',
         sourcemap: 'inline',
         strict: false,
-        compact: true,
+        compact: true
       }
     ],
     plugins: [
       sass({ insert: true }),
       typescript({ objectHashIgnoreUnknownHack: false }),
       terser(),
+      bundleSize(),
     ],
     external: ['react', 'react-dom']
 }

@@ -1,11 +1,11 @@
 {
   "name": "react-dice-roll",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A rolling dice made in react",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
     "start": "rollup -c -w",
-    "publish": "yarn build && npm publish"
+    "prepublish": "yarn build"
   },
   "keywords": [
     "dice",
@@ -31,10 +31,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rollup": "^2.22.0",
+    "rollup-plugin-bundle-size": "^1.0.3",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "typescript": "^3.9.7"
-  },
-  "dependencies": {}
+  }
 }
