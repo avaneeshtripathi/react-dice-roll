@@ -1,7 +1,7 @@
 {
   "name": "react-dice-roll",
   "version": "1.0.10",
-  "description": "A rolling dice made in react",
+  "description": "A highly customizable dice roll package built in react.",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
     "start": "rollup -c -w",
@@ -14,8 +14,15 @@
     "react"
   ],
   "main": "dist/index.js",
-  "repository": "git@github.com:avaneeshtripathi/react-dice-roll.git",
-  "author": "avaneeshtripathi <avaneeshtripathi93@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avaneeshtripathi/react-dice-roll"
+  },
+  "homepage": "https://github.com/avaneeshtripathi",
+  "bugs": {
+    "url": "https://github.com/avaneeshtripathi/react-dice-roll/issues"
+  },
+  "author": "Avaneesh Tripathi",
   "license": "MIT",
   "files": [
     "dist"
