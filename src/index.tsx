@@ -37,7 +37,7 @@ export default function Dice(props: TProps) {
 
     useEffect(() => {
         setFaceArray(getFaceArray(size, faces, faceBg));
-    }, [size, faces, faceBg]);
+    }, [size, faces.length, faceBg]);
 
     useEffect(() => {
         const positionStyles = placement?.split('-')?.reduce((acc, curr) => {
