@@ -11,7 +11,7 @@ const getFaceArray = (size: number, faces: string[], faceBg?: string): TSingleFa
         children: !faces[index] ? (
             <div className={`defaultFace ${valueClassMap[(index + 1) as TValue]}`}>
                 {times(25, (idx) => (
-                    <div>
+                    <div key={idx}>
                         {defaultFaceGrid[(index + 1) as TValue].includes(idx) && <span />}
                     </div>
                 ))}
@@ -34,7 +34,7 @@ export default function Dice(props: TProps) {
     const [faceArray, setFaceArray] = useState<TSingleFace[]>([]);
     const [placementStyles, setPlacementStyles] = useState<React.CSSProperties>({});
     const [buttonStyles, setButtonStyles] = useState<React.CSSProperties>({});
-
+    
     useEffect(() => {
         setFaceArray(getFaceArray(size, faces, faceBg));
     }, [size, faces.length, faceBg]);
