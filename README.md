@@ -33,6 +33,7 @@ import Dice from 'react-dice-roll';
 | :----------: | :-------------: | :-----: | :-----------------------------------: |
 | rollingTime  |     number      |   1000  | Rolling time for dice in milliseconds |
 |    onRoll    | (value) => void |    -    | Function which receives the values between 1 - 6 after the dice roll |
+|    eventHandlerKey    | string |    -    | Accepts a key string which will replace the onClick on the dice with a event listener on press of that key. eg: Enter, a |
 | defaultValue |  number (1-6)   |    6    | Default value of the dice before rolling |
 |     size     |     number      |   250   | Dimensions of the dice in pixels |
 |    sound     |     string      |    -    | URL for the sound to play on dice roll |
