@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export type TProps = React.CSSProperties & {
     rollingTime?: number;
     onRoll?: (value: TValue) => void;
@@ -9,7 +11,7 @@ export type TProps = React.CSSProperties & {
     faceBg?: string;
     placement?: string;
     sound?: string;
-    eventHandlerKey?: string;
+    triggers?: string[];
 };
 
 export type TValue = 1 | 2 | 3 | 4 | 5 | 6;
