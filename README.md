@@ -2,6 +2,9 @@
 
 A highly customizable dice roll package built in react.
 
+
+## [Live Demo](https://codesandbox.io/s/dazzling-curie-s4tj7)
+
 ## Installation
 
 Use the package manager [yarn](https://classic.yarnpkg.com/en/docs/install) to install `react-dice-roll`.
