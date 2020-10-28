@@ -28,7 +28,7 @@ const getFaceArray = (size: number, faces: string[], faceBg?: string): TSingleFa
 };
 
 export default function Dice(props: TProps) {
-    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, handlerKey, ...rest } = props;
+    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, eventHandlerKey, ...rest } = props;
     const [value, setValue] = useState<TValue>(defaultValue);
     const [rolling, setRolling] = useState(false);
     const [faceArray, setFaceArray] = useState<TSingleFace[]>([]);
@@ -56,7 +56,7 @@ export default function Dice(props: TProps) {
     };
 
     const keyPressHandler = (event: KeyboardEvent) => {
-        if (!handlerKey || event.key !== handlerKey) {
+        if (!eventHandlerKey || event.key !== eventHandlerKey) {
             return;
         }
 
@@ -64,7 +64,7 @@ export default function Dice(props: TProps) {
     };
 
     const clickHandler = () => {
-        if (handlerKey) {
+        if (eventHandlerKey) {
             return;
         }
 
@@ -72,7 +72,7 @@ export default function Dice(props: TProps) {
     };
 
     useEffect(() => {
-        if (typeof window === 'undefined' || !handlerKey) {
+        if (typeof window === 'undefined' || !eventHandlerKey) {
             return;
         }
         window.addEventListener('keypress', keyPressHandler);
@@ -80,7 +80,7 @@ export default function Dice(props: TProps) {
         return () => {
           window.removeEventListener('keypress', keyPressHandler);
         };
-    }, [handlerKey]);
+    }, [eventHandlerKey]);
     
     useEffect(() => {
         setFaceArray(getFaceArray(size, faces, faceBg));

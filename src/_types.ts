@@ -9,7 +9,7 @@ export type TProps = React.CSSProperties & {
     faceBg?: string;
     placement?: string;
     sound?: string;
-    handlerKey?: string;
+    eventHandlerKey?: string;
 };
 
 export type TValue = 1 | 2 | 3 | 4 | 5 | 6;
