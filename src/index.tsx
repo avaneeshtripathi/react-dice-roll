@@ -28,12 +28,59 @@ const getFaceArray = (size: number, faces: string[], faceBg?: string): TSingleFa
 };
 
 export default function Dice(props: TProps) {
-    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, ...rest } = props;
+    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, handlerKey, ...rest } = props;
     const [value, setValue] = useState<TValue>(defaultValue);
     const [rolling, setRolling] = useState(false);
     const [faceArray, setFaceArray] = useState<TSingleFace[]>([]);
     const [placementStyles, setPlacementStyles] = useState<React.CSSProperties>({});
     const [buttonStyles, setButtonStyles] = useState<React.CSSProperties>({});
+
+    const handleDiceRoll = () => {
+        let diceAudio: HTMLAudioElement;
+        if (sound) {
+            diceAudio = new Audio(sound);
+            diceAudio.play();
+        }
+        setRolling(true);
+        setTimeout(() => {
+            let rollValue = Math.floor((Math.random() * 6) + 1) as TValue;
+            if (cheatValue) rollValue = cheatValue;
+            
+            setRolling(false);
+            setValue(rollValue);
+            
+            if (diceAudio) diceAudio.pause();
+            if (!onRoll) return;
+            onRoll(rollValue);
+        }, rollingTime);
+    };
+
+    const keyPressHandler = (event: KeyboardEvent) => {
+        if (!handlerKey || event.key !== handlerKey) {
+            return;
+        }
+
+        handleDiceRoll();
+    };
+
+    const clickHandler = () => {
+        if (handlerKey) {
+            return;
+        }
+
+        handleDiceRoll();
+    };
+
+    useEffect(() => {
+        if (typeof window === 'undefined' || !handlerKey) {
+            return;
+        }
+        window.addEventListener('keypress', keyPressHandler);
+        // Remove event listeners on cleanup
+        return () => {
+          window.removeEventListener('keypress', keyPressHandler);
+        };
+    }, [handlerKey]);
     
     useEffect(() => {
         setFaceArray(getFaceArray(size, faces, faceBg));
@@ -56,30 +103,10 @@ export default function Dice(props: TProps) {
         });
     }, [placementStyles, size, disabled]);
 
-    const handleDiceRoll = () => {
-        let diceAudio: HTMLAudioElement;
-        if (sound) {
-            diceAudio = new Audio(sound);
-            diceAudio.play();
-        }
-        setRolling(true);
-        setTimeout(() => {
-            let rollValue = Math.floor((Math.random() * 6) + 1) as TValue;
-            if (cheatValue) rollValue = cheatValue;
-            
-            setRolling(false);
-            setValue(rollValue);
-            
-            if (diceAudio) diceAudio.pause();
-            if (!onRoll) return;
-            onRoll(rollValue);
-        }, rollingTime);
-    };
-
     if (!faceArray?.length) return null;
 
     return (
-        <button disabled={disabled || rolling} onClick={handleDiceRoll} style={buttonStyles} className={`_space3d ${valueClassMap[value]} ${rolling && 'rolling'}`}>
+        <button disabled={disabled || rolling} onClick={clickHandler} style={buttonStyles} className={`_space3d ${valueClassMap[value]} ${rolling && 'rolling'}`}>
             <div className="_3dbox">
                 <div {...faceArray[0]} />
                 <div {...faceArray[1]} />
