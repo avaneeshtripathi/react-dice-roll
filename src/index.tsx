@@ -3,7 +3,7 @@ import './styles.scss';
 import { TProps, TSingleFace, TValue } from './_types';
 import { defaultFaceGrid, faceClasses, faceTransformMap, times, valueClassMap } from './_utils';
 
-const { useState, useEffect } = React;
+const { useState, useEffect, forwardRef, useImperativeHandle } = React;
 
 const getFaceArray = (size: number, faces: string[], faceBg?: string): TSingleFace[] => {
     return faceClasses.map((className: string, index: number) => ({
@@ -27,7 +27,7 @@ const getFaceArray = (size: number, faces: string[], faceBg?: string): TSingleFa
     }));
 };
 
-const Dice = React.forwardRef((props: TProps, ref) => {
+const Dice = forwardRef((props: TProps, ref: any) => {
     const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, triggers = ['click'], ...rest } = props;
     const [value, setValue] = useState<TValue>(defaultValue);
     const [rolling, setRolling] = useState(false);
@@ -35,7 +35,7 @@ const Dice = React.forwardRef((props: TProps, ref) => {
     const [placementStyles, setPlacementStyles] = useState<React.CSSProperties>({});
     const [buttonStyles, setButtonStyles] = useState<React.CSSProperties>({});
 
-    const handleDiceRoll = () => {
+    const handleDiceRoll = (value?: TValue) => {
         let diceAudio: HTMLAudioElement;
         if (sound) {
             diceAudio = new Audio(sound);
@@ -44,6 +44,8 @@ const Dice = React.forwardRef((props: TProps, ref) => {
         setRolling(true);
         setTimeout(() => {
             let rollValue = Math.floor((Math.random() * 6) + 1) as TValue;
+
+            if (value) rollValue = value;
             if (cheatValue) rollValue = cheatValue;
             
             setRolling(false);
@@ -55,7 +57,7 @@ const Dice = React.forwardRef((props: TProps, ref) => {
         }, rollingTime);
     };
 
-    React.useImperativeHandle(ref, () => ({ rollDice: handleDiceRoll }));
+    useImperativeHandle(ref, () => ({ rollDice: handleDiceRoll }));
 
     const keyPressHandler = (event: KeyboardEvent) => {
         if (!triggers?.length || !triggers.includes(event.key)) {
