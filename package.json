@@ -1,6 +1,6 @@
 {
   "name": "react-dice-roll",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A highly customizable dice roll package built in react.",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
