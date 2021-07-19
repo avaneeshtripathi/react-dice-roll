@@ -1,5 +1,3 @@
-import { Key } from "react";
-
 export type TProps = React.CSSProperties & {
     rollingTime?: number;
     onRoll?: (value: TValue) => void;
