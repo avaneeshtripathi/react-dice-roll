@@ -32,7 +32,7 @@ type TDiceRef = {
 };
 
 const Dice = forwardRef((props: TProps, ref: React.MutableRefObject<TDiceRef>) => {
-    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, triggers = ['click'], ...rest } = props;
+    const { rollingTime = 1000, onRoll, defaultValue = 6, size = 250, faceBg, faces = [], disabled, cheatValue, placement, sound, triggers = ['click'],externalTrigger, ...rest } = props;
     const [value, setValue] = useState<TValue>(defaultValue);
     const [rolling, setRolling] = useState(false);
     const [faceArray, setFaceArray] = useState<TSingleFace[]>([]);
@@ -78,6 +78,7 @@ const Dice = forwardRef((props: TProps, ref: React.MutableRefObject<TDiceRef>) =
 
         handleDiceRoll();
     };
+    
 
     useEffect(() => {
         if (typeof window === 'undefined' || !triggers?.length) {
@@ -93,7 +94,11 @@ const Dice = forwardRef((props: TProps, ref: React.MutableRefObject<TDiceRef>) =
     useEffect(() => {
         setFaceArray(getFaceArray(size, faces, faceBg));
     }, [size, faces.length, faceBg]);
-
+    useEffect(()=>{
+    if(externalTrigger === true){
+        handleDiceRoll();
+    }
+    },[externalTrigger])
     useEffect(() => {
         const positionStyles = placement?.split('-')?.reduce((acc, curr) => {
             return { ...acc, [curr]: ['left', 'right'].includes(curr) ? 0 : `-${size}px` };
