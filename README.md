@@ -45,6 +45,7 @@ import Dice from 'react-dice-roll';
 |    faceBg    |     string      |    -    | Custom background color for the dice face |
 |  placement   | top-left, top-right, bottom-left, bottom-right | - | Placement of the device if put inside a relative positioned element |
 |  cheatValue  |  number (1-6)   |    -    | Cheat Value for the dice. If passed, dice will always roll to this value |
+|externalTrigger|boolean         |    -    | Whether to use an external button to trigger or not, use useState to set it dynamically|
 
 
 ## Contributing
