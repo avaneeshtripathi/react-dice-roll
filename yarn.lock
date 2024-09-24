@@ -1471,10 +1471,10 @@ rollup-plugin-typescript2@^0.27.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.25.0:
-  version "2.53.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.53.2.tgz#3279f9bfba1fe446585560802e418c5fbcaefa51"
-  integrity sha512-1CtEYuS5CRCzFZ7SNW5528SlDlk4VDXIRGwbm/2POQxA/G4+7/crIqJwkmnj8Q/74hGx4oVlNvh4E1CJQ5hZ6w==
+rollup@^3.29.5:
+  version "3.29.5"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.29.5.tgz#8a2e477a758b520fb78daf04bca4c522c1da8a54"
+  integrity sha512-GVsDdsbJzzy4S/v3dqWPJ7EfvZJfCHiDqe80IyrF59LYuP+e6U1LJoUqeuqRbwAWoMNoXivMNeNAOf5E22VA1w==
   optionalDependencies:
     fsevents "~2.3.2"
 
